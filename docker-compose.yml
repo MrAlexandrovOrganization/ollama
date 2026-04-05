@@ -27,7 +27,9 @@ services:
       - OLLAMA_MAX_LOADED_MODELS=1  # держать в памяти только одну модель
       - OLLAMA_MODEL=${OLLAMA_MODEL:-qwen2.5:1.5b}
     networks:
-      - ollama-net
+      ollama-net:
+        aliases:
+          - ollama
     # No "ports:" — not accessible from host or public IP, only via ollama-net.
     healthcheck:
       test: ["CMD", "ollama", "list"]
