@@ -25,7 +25,7 @@ services:
     environment:
       - OLLAMA_NUM_PARALLEL=1       # CPU: одна задача одновременно
       - OLLAMA_MAX_LOADED_MODELS=1  # держать в памяти только одну модель
-      - OLLAMA_MODEL=${OLLAMA_MODEL:-qwen2.5:1.5b}
+      - OLLAMA_MODELS=${OLLAMA_MODELS:-qwen3.5:2b}
     networks:
       ollama-net:
         aliases:
