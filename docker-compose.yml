@@ -16,7 +16,7 @@ networks:
 
 services:
   ollama:
-    image: ollama/ollama:0.18.2
+    image: ollama/ollama:0.30.5
     restart: unless-stopped
     entrypoint: ["/bin/sh", "/entrypoint.sh"]
     volumes:
@@ -43,6 +43,12 @@ services:
         max-size: "10m"
         max-file: "3"
 
+    deploy:
+      resources:
+        limits:
+          memory: 10g
+          cpus: "7.0"
+
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
     restart: unless-stopped
@@ -63,6 +69,12 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+    deploy:
+      resources:
+        limits:
+          memory: 1.5g
+          cpus: "1.0"
 
 volumes:
   ollama_data:
