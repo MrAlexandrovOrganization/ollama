@@ -8,12 +8,13 @@ until ollama list > /dev/null 2>&1; do
     sleep 1
 done
 
-MODELS="${OLLAMA_MODELS:-qwen3.5:2b}"
+MODELS="${OLLAMA_PULL_MODELS:-qwen3.5:2b}"
 
 for MODEL in $(echo "$MODELS" | tr ',' ' '); do
     if ! ollama show "$MODEL" > /dev/null 2>&1; then
         echo "Pulling model $MODEL..."
-        ollama pull "$MODEL"
+        ollama pull "$MODEL" 2>&1 | stdbuf -oL grep --line-buffered -vE '^pulling [0-9a-f]+:' || true
+        echo "Model $MODEL pulled."
     else
         echo "Model $MODEL already present, skipping."
     fi
