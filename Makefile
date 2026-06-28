@@ -27,3 +27,10 @@ recreate:
 .PHONY: down
 down:
 	$(DOCKER_COMPOSE) down
+
+.PHONY: list
+list:
+	docker exec ollama-ollama-1 ollama list
+
+# .PHONY: rm
+# 	docker exec ollama-ollama-1 ollama rm qwen3-vl:2b glm-ocr:bf16 qwen2.5:1.5b
