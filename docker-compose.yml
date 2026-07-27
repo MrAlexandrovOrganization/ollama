@@ -27,6 +27,7 @@ services:
       - ollama_data:/root/.ollama
       - ./entrypoint.sh:/entrypoint.sh:ro
     environment:
+      - OLLAMA_NUM_THREAD=4         # больше потоков не даёт ускорения
       - OLLAMA_NUM_PARALLEL=1       # CPU: одна задача одновременно
       - OLLAMA_MAX_LOADED_MODELS=1  # держать в памяти только одну модель
       # ВАЖНО: НЕ задавать OLLAMA_MODELS — это встроенная переменная самой Ollama
@@ -54,7 +55,7 @@ services:
       resources:
         limits:
           memory: 10g
-          cpus: "8.0"
+          cpus: "4.5"
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
