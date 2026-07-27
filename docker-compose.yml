@@ -13,6 +13,8 @@
 networks:
   ollama-net:
     name: ollama-net
+    driver_opts:
+      com.docker.network.driver.mtu: "1376"
 
 services:
   ollama:
@@ -30,7 +32,7 @@ services:
       # ВАЖНО: НЕ задавать OLLAMA_MODELS — это встроенная переменная самой Ollama
       # и она означает путь к директории с моделями (по умолчанию /root/.ollama/models).
       # Список моделей для предзагрузки entrypoint'ом передаём в OLLAMA_PULL_MODELS.
-      - OLLAMA_PULL_MODELS=${OLLAMA_PULL_MODELS:-qwen3.5:2b}
+      - OLLAMA_PULL_MODELS=${OLLAMA_PULL_MODELS:-qwen2.5:7b}
     networks:
       ollama-net:
         aliases:
