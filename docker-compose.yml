@@ -29,11 +29,12 @@ services:
     environment:
       - OLLAMA_NUM_THREAD=4         # больше потоков не даёт ускорения
       - OLLAMA_NUM_PARALLEL=1       # CPU: одна задача одновременно
-      - OLLAMA_MAX_LOADED_MODELS=1  # держать в памяти только одну модель
+      - OLLAMA_MAX_LOADED_MODELS=2  # держать в памяти только одну модель
       # ВАЖНО: НЕ задавать OLLAMA_MODELS — это встроенная переменная самой Ollama
       # и она означает путь к директории с моделями (по умолчанию /root/.ollama/models).
       # Список моделей для предзагрузки entrypoint'ом передаём в OLLAMA_PULL_MODELS.
-      - OLLAMA_PULL_MODELS=${OLLAMA_PULL_MODELS:-qwen2.5:7b}
+      - OLLAMA_PULL_MODELS=${OLLAMA_PULL_MODELS:-qwen2.5:7b,qwen2.5:1.5b,bge-m3:567m}
+      - OLLAMA_KEEP_ALIVE=10m
     networks:
       ollama-net:
         aliases:
