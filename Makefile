@@ -30,7 +30,7 @@ down:
 
 .PHONY: list
 list:
-	docker exec ollama-ollama-1 ollama list
+	$(DOCKER_COMPOSE) exec -T ollama ollama list
 
 # .PHONY: rm
-# 	docker exec ollama-ollama-1 ollama rm qwen3-vl:2b glm-ocr:bf16 qwen2.5:1.5b
+# 	$(DOCKER_COMPOSE) exec -T ollama ollama rm qwen3-vl:2b glm-ocr:bf16 qwen2.5:1.5b

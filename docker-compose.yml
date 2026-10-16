@@ -18,6 +18,7 @@ networks:
 
 services:
   ollama:
+    container_name: "${CONTAINER_NAME_PREFIX:-}ollama"
     image: ollama/ollama:0.30.5
     restart: unless-stopped
     entrypoint: ["/bin/sh", "/entrypoint.sh"]
