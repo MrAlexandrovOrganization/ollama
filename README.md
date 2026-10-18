@@ -1,4 +1,4 @@
-# backends__ollama
+# ollama
 
 ## Структура Compose
 
